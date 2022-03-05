@@ -9,7 +9,7 @@ import numpy as np
 import cv2
 from PIL import Image
 from src.utils import label_colormap
-flag = 'test'
+flag = 'train'
 gt_floder = 'datasets/icdar2015/{}_gts'.format(flag)
 img_floder = 'datasets/icdar2015/{}_images'.format(flag)
 
@@ -17,14 +17,6 @@ png_floder_path = os.path.join('datasets/icdar2015', '{}_pngs'.format(flag))
 print('write into >>>', png_floder_path)
 if os.path.exists(png_floder_path) is False:
     os.mkdir(png_floder_path)
-
-img = cv2.imread('datasets/icdar2015/test_images/img_1.jpg')
-a  = 1
-# 读取所有文件，开始循环
-    # 读取 txt 文件
-    # 创建 720, 1280 的图片
-    # 读取 某行 开始循环
-        # 对
 def read_single_txt(gt):
     lines = []
 
@@ -63,7 +55,7 @@ def read_all_txt(img_floder,gt_floder, save_floder):
                 if  min(height, width) < 10 or ignore is True:
                     cv2.fillPoly(png, polygon.astype(np.int32)[np.newaxis, :, :], 255)
                 else:
-                    cv2.fillPoly(png, polygon.astype(np.int32)[np.newaxis, :, :], 125)
+                    cv2.fillPoly(png, polygon.astype(np.int32)[np.newaxis, :, :], 1)
             # res1_PIL = Image.fromarray(png, mode='P')
             # res1_PIL.putpalette((colormap).astype(np.uint8).flatten())
             # res1_PIL.save(png_path)
